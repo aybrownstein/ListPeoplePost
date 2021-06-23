@@ -49,17 +49,23 @@ namespace homeWork3_3.Models
             return peoples;
         }
 
-        public void AddPerson(People person)
+        public void AddPerson(List<People> people)
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             using SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "INSERT INTO People (FirstName, LastName, Age) " +
                              "VALUES (@firstName, @lastName, @age)";
-            cmd.Parameters.AddWithValue("@firstName", person.FirstName);
-            cmd.Parameters.AddWithValue("@lastName", person.LastName);
-            cmd.Parameters.AddWithValue("@age", person.Age);
             connection.Open();
-            cmd.ExecuteNonQuery();
+            foreach (People person in people)
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@firstName", person.FirstName);
+                cmd.Parameters.AddWithValue("@lastName", person.LastName);
+                cmd.Parameters.AddWithValue("@age", person.Age);
+
+                cmd.ExecuteNonQuery();
+            }
+          
         }
     }
 }

@@ -33,10 +33,7 @@ namespace homeWork3_3.Controllers
         public IActionResult AddPeople(List<People> people)
         {
             PeopleDb db = new PeopleDb(_connectionString);
-            foreach (var person in people)
-            {
-                db.AddPerson(person);
-            }
+            db.AddPerson(people.Where(p => !String.IsNullOrEmpty(p.FirstName) && !String.IsNullOrEmpty(p.LastName)).ToList());
 
             TempData["message"] = "People added successfully"; 
             return Redirect("/");
