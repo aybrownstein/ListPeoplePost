@@ -1,0 +1,20 @@
+﻿<div class="col-md-8 offset-md-2">
+    <button class="btn btn-danger" id="add-row">Add Row</button>
+</div>
+<form style="margin-top: 10px;" method="post" action="/Home/AddPeople">
+    <div id="add-people-rows">
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-md-4">
+                <input class="form-control" type="text" name="people[0].firstName" placeholder="First Name" />
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" name="people[0].lastName" placeholder="Last Name" />
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" name="people[0].age" placeholder="Age" />
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+
+</form>
